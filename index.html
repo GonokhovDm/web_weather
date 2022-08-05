@@ -7,65 +7,74 @@
    <title>GD_Weather</title>
 
    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Saira:wght@200;400;600;800&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Saira:wght@200;400;600;800&display=swap" rel="stylesheet">
+   
+   <script src="https://unpkg.com/vue@next"></script>   
+   
    <link rel="stylesheet" href="style.css">
    <link rel="stylesheet" href="null.css">
 </head>
 <body>
 
    <main id="app">
-      <div id="root">
+      <div id="root" >
          <!-- <img src="./img/loader.gif" alt="loader" class="loader"> -->
 
-         <div class="weather__block" id="weather__block">           
+         <div class="weather__block" id="weather__block" v-if="typeof weather.location != 'undefined'">           
                <div class="weather__info">
-                  <span class="temp" id="temp">25°</span>
+                  <span class="temp" id="temp">{{ weather.current.temp_c }}°</span>
                   <div class="data">
-                     <span class="city" id="city">City</span>
-                     <span class="date" id="date">Date</span>
+                     <span class="city" id="city">{{ weather.location.name }}</span>
+                     <span class="date" id="date">{{ weather.location.localtime }}</span>
                   </div>
                </div>
          </div>
 
          <div class="info__block" id="info__block">
             <div class="info__content">
-               <form action="GET" class="form" id="form">
-                  <div class="class-group">
+               <!-- <form action="GET" class="form" id="form"> -->
+                  <div class="class-group" >
                      <input
                         type = "text"
-                        value = ""
-                        name = "city"
                         class = "form-input"
                         id = "text-input"
                         placeholder = "Enter city"
+                        v-model="query"
+                        @keypress="fetchWeather"
                         required
                      />
-                     <input 
+                     <!-- <input 
                         type="submit"
                         class="form-submit"
                         id="submit-button"
-                        value="OK"
-                     />
+                        value="OK"                       
+                     /> -->
                   </div>
-               </form>
-               <span class="details">Weather details</span>
-               <div class="more-info">
-                  <div class="more-info__elem">
-                     <span class="title">Cloudly</span>
-                     <span class="value">00 %</span>
-                  </div>
-                  <div class="more-info__elem">
-                     <span class="title">Humidity</span>
-                     <span class="value">00 %</span>
-                  </div>
-                  <div class="more-info__elem">
-                     <span class="title">Wind</span>
-                     <span class="value">00 Km/h</span>
-                  </div>
-                  <div class="more-info__elem">
-                     <span class="title">Rain</span>
-                     <span class="value">00 %</span>
+               <!-- </form> -->
+               <div class="details-block" v-if="typeof weather.location != 'undefined'">
+                  <span class="details">Weather details</span>
+                  <div class="more-info">
+                     <div class="more-info__elem">
+                        <span class="title">Feels like</span>
+                        <span class="value">{{ weather.current.feelslike_c }}°</span>
+                     </div>
+                     <div class="more-info__elem">
+                        <span class="title">Cloudly</span>
+                        <span class="value">{{ weather.current.cloud }} %</span>
+                     </div>
+                     <div class="more-info__elem">
+                        <span class="title">Humidity</span>
+                        <span class="value">{{ weather.current.humidity }} %</span>
+                     </div>
+                     <div class="more-info__elem">
+                        <span class="title">Wind</span>
+                        <span class="value">{{ weather.current.wind_kph }} Km/h</span>
+                     </div>
+                     <div class="more-info__elem">
+                        <span class="title">Rain</span>
+                        <span class="value">00 %</span>
+                     </div>
                   </div>
                </div>
             </div>
@@ -76,6 +85,6 @@
       </div>
    </main>
    
-   <script src="./script.js"></script>
+   <script src="./vue.js"></script>
 </body>
 </html>
