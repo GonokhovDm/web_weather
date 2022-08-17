@@ -21,6 +21,8 @@
       <div id="root" >
          <!-- <img src="./img/loader.gif" alt="loader" class="loader"> -->
 
+
+
          <div class="weather__block" id="weather__block" v-if="typeof weather.location != 'undefined'">           
                <div class="weather__info">
                   <span class="temp" id="temp">{{ weather.current.temp_c }}°</span>
@@ -32,9 +34,10 @@
          </div>
 
          <div class="info__block" id="info__block">
-            <div class="info__content">
+            <div class="info__content"></div>
+
                <!-- <form action="GET" class="form" id="form"> -->
-                  <div class="class-group" >
+                  <div class="class-group">
                      <input
                         type = "text"
                         class = "form-input"

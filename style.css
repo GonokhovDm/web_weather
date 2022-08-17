@@ -86,7 +86,9 @@ img {
    width: 30%;
    position: relative;
    display: flex;
-   justify-content: center;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
    background-color: rgba(30, 35, 35, .6);
 }
 
@@ -97,7 +99,7 @@ img {
 
 .class-group {
    display: flex;
-   justify-content: center;
+   justify-content: start;
    align-items: baseline;
 }
 
@@ -128,15 +130,31 @@ img {
    background-color: #fff;
 }
 
+.details-block {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+}
+
 .details {
    display: flex;
-   justify-content: start;
+   justify-content: center;
    font-size: 25px;
    font-weight: 600;
    margin-bottom: 50px;
 }
 
+.more-info {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+}
+
 .more-info__elem {
+   width: 90%;
    display: flex;
    justify-content: space-between;
    margin-bottom: 15px;
